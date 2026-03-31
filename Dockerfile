@@ -6,6 +6,7 @@ RUN npm ci
 
 # Stage 2: Production-only image
 FROM node:22-alpine
+RUN apk update && apk upgrade --no-cache && rm -rf /var/cache/apk/*
 ENV NODE_ENV=production
 WORKDIR /app
 COPY package.json package-lock.json ./
